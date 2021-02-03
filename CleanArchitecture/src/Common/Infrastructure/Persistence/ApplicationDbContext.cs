@@ -24,7 +24,7 @@ namespace Infrastructure.Persistence
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions,
             ICurrentUserService currentUserService,
-            IDateTime dateTime, 
+            IDateTime dateTime,
             IDomainEventService domainEventService) : base(options, operationalStoreOptions)
         {
             _dateTime = dateTime;
@@ -46,6 +46,7 @@ namespace Infrastructure.Persistence
                         entry.Entity.Creator = _currentUserService.UserId;
                         entry.Entity.CreateDate = _dateTime.Now;
                         break;
+
                     case EntityState.Modified:
                         entry.Entity.Modifier = _currentUserService.UserId;
                         entry.Entity.ModifyDate = _dateTime.Now;

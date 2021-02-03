@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Common.Models;
 using Application.Dto;
@@ -15,5 +16,7 @@ namespace Application.Common.Interfaces
         Task<bool> UserIsInRole(string userId, string role);
 
         Task<Result> DeleteUserAsync(string userId);
+
+        Task<List<ApplicationRoleDto>> GetRolesAsync();
     }
 }

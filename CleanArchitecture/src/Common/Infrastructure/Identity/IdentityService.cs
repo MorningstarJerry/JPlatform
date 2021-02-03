@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Common.Exceptions;
@@ -13,11 +14,15 @@ namespace Infrastructure.Identity
     public class IdentityService : IIdentityService
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IMapper _mapper;
 
-        public IdentityService(UserManager<ApplicationUser> userManager, IMapper mapper)
+        public IdentityService(UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            IMapper mapper)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _mapper = mapper;
         }
 
@@ -82,6 +87,14 @@ namespace Infrastructure.Identity
             var result = await _userManager.DeleteAsync(user);
 
             return result.ToApplicationResult();
+        }
+
+        public async Task<List<ApplicationRoleDto>> GetRolesAsync()
+        {
+            var result = _roleManager.Roles;
+            var roles = await result.ToListAsync<IdentityRole>();
+
+            return _mapper.Map<List<ApplicationRoleDto>>(roles);
         }
     }
 }

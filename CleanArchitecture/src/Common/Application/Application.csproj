@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ApplicationRole\Commands\" />
     <Folder Include="ApplicationUser\Commands\Create\" />
     <Folder Include="ApplicationUser\Commands\Delete\" />
     <Folder Include="ApplicationUser\Commands\Update\" />
