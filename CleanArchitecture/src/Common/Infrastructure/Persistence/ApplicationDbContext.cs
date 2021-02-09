@@ -35,6 +35,9 @@ namespace Infrastructure.Persistence
         public DbSet<City> Cities { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Village> Villages { get; set; }
+        public DbSet<Workcell> Workcells { get; set; }
+        public DbSet<Site> Sites { get; set; }
+        public DbSet<Sector> Sectors { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
@@ -126,6 +127,22 @@ namespace Infrastructure.Persistence
                         new District{Name = "Yenişehir"}
                     }
                 });
+
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public static async Task SeedSamplesSitesDataAsync(ApplicationDbContext context)
+        {
+            // Seed, if necessary
+            if (!context.Sites.Any())
+            {
+                context.Sites.AddRange(new List<Site>() { new Site("HUA"),
+                    new Site("HuangPu"),
+                    new Site("Wuxi"),
+                    new Site("WuHan"),
+                    new Site("WeiHai"),
+                    new Site("ShenZhen")});
 
                 await context.SaveChangesAsync();
             }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Workcells\Queries\GetWorkcellByIdQuery.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="9.3.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.3.0" />
     <PackageReference Include="Mapster" Version="7.0.1" />
@@ -27,6 +31,7 @@
     <Folder Include="ApplicationUser\Commands\Delete\" />
     <Folder Include="ApplicationUser\Commands\Update\" />
     <Folder Include="Villages\Commands\" />
+    <Folder Include="Workcells\Commands\" />
   </ItemGroup>
 
 </Project>

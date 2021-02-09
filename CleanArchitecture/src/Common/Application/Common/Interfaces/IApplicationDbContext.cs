@@ -13,6 +13,10 @@ namespace Application.Common.Interfaces
 
         DbSet<Village> Villages { get; set; }
 
+        DbSet<Site> Sites { get; set; }
+        DbSet<Sector> Sectors { get; set; }
+        DbSet<Workcell> Workcells { get; set; }
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

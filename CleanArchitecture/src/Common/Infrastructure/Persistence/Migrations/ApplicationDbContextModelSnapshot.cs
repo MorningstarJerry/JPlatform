@@ -81,6 +81,56 @@ namespace Infrastructure.Persistence.Migrations
                     b.ToTable("Districts");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Sector", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(95) CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Creator")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Modifier")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime?>("ModifyDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sectors");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Site", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(95) CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Creator")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Modifier")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime?>("ModifyDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sites");
+                });
+
             modelBuilder.Entity("Domain.Entities.Village", b =>
                 {
                     b.Property<int>("Id")
@@ -112,6 +162,43 @@ namespace Infrastructure.Persistence.Migrations
                     b.HasIndex("DistrictId");
 
                     b.ToTable("Villages");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Workcell", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(95) CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Creator")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Modifier")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime?>("ModifyDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Pic")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("SectorId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("SiteId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Workcells");
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>

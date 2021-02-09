@@ -108,6 +108,58 @@ namespace Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Sectors",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(95) CHARACTER SET utf8mb4", nullable: false),
+                    Creator = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Modifier = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    ModifyDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Name = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sectors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sites",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(95) CHARACTER SET utf8mb4", nullable: false),
+                    Creator = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Modifier = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    ModifyDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Name = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sites", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Workcells",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(95) CHARACTER SET utf8mb4", nullable: false),
+                    Pic = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Location = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    SiteId = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    SectorId = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Creator = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Modifier = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    ModifyDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Name = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Workcells", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -359,7 +411,16 @@ namespace Infrastructure.Persistence.Migrations
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
+                name: "Sectors");
+
+            migrationBuilder.DropTable(
+                name: "Sites");
+
+            migrationBuilder.DropTable(
                 name: "Villages");
+
+            migrationBuilder.DropTable(
+                name: "Workcells");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
