@@ -1,3 +1,35 @@
+# 移动开发环境搭建
+## 后端代码(Docker 启动 8082)
+```
+$ cd /usr/mybgapi/JPlatform/CleanArchitecture
+
+Dockerfile(/usr/mybgapi/JPlatform/CleanArchitecture/Dockerfile)
+
+/usr/mybgapi/JPlatform/CleanArchitecture
+$ docker build . -t japi:0.0.1
+
+$ podman run -it  -p 8082:80  --name jwebapi  c115092f38eb
+
+http://8.135.118.30:8082/api/index.html?url=/api/specification.json#/
+```
+
+
+
+## 后端编译后文件(硬启动 8888)
+```
+/usr/src/webapipub
+dotnet WebApi.dll --urls=https://*:8888
+```
+
+
+# uView 前端发布（80 默认端口）
+```
+/usr/share/nginx/myapprelease
+http://8.135.118.30/
+```
+
+
+
 # CleanArchitecture
 ## Vue & Clean CleanArchitecture full stack solution
 
