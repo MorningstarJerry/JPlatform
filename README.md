@@ -1,4 +1,4 @@
-# 移动开发环境搭建
+# Linux CentOS 8 移动开发环境搭建
 ## 后端代码(Docker 启动 8082)
 ```
 $ cd /usr/mybgapi/JPlatform/CleanArchitecture
