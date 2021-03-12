@@ -12,10 +12,34 @@ namespace Infrastructure.Persistence
         public static async Task SeedDefaultUserAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             var administratorRole = new IdentityRole("Administrator");
+            var jabilAdminRole = new IdentityRole("ADMIN");
+            var jabilEditorRole = new IdentityRole("EDITOR");
+            var jabilApproverRole = new IdentityRole("APPROVER");
+            var jabilUserRole = new IdentityRole("USER");
 
             if (roleManager.Roles.All(r => r.Name != administratorRole.Name))
             {
                 await roleManager.CreateAsync(administratorRole);
+            }
+
+            if (roleManager.Roles.All(r => r.Name != jabilAdminRole.Name))
+            {
+                await roleManager.CreateAsync(jabilAdminRole);
+            }
+
+            if (roleManager.Roles.All(r => r.Name != jabilEditorRole.Name))
+            {
+                await roleManager.CreateAsync(jabilEditorRole);
+            }
+
+            if (roleManager.Roles.All(r => r.Name != jabilApproverRole.Name))
+            {
+                await roleManager.CreateAsync(jabilApproverRole);
+            }
+
+            if (roleManager.Roles.All(r => r.Name != jabilUserRole.Name))
+            {
+                await roleManager.CreateAsync(jabilUserRole);
             }
 
             var defaultUser = new ApplicationUser { UserName = "iayti", Email = "test@test.com" };
@@ -25,6 +49,14 @@ namespace Infrastructure.Persistence
                 await userManager.CreateAsync(defaultUser, "Matech_1850");
                 await userManager.AddToRolesAsync(defaultUser, new[] { administratorRole.Name });
             }
+
+            //var defaultUser = new ApplicationUser { UserName = "admin", Email = "JerryDanks@Outlook.com", Site = new Site("HuangPu"), Sector = new Sector("All"), Workcell = new Workcell("Default"), Permission = new Permission("All"), Department= new Department("DEAULT") };
+
+            //if (userManager.Users.All(u => u.UserName != defaultUser.UserName))
+            //{
+            //    await userManager.CreateAsync(defaultUser, "admin");
+            //    await userManager.AddToRolesAsync(defaultUser, new[] { jabilAdminRole.Name });
+            //}
         }
 
         public static async Task SeedSampleCityDataAsync(ApplicationDbContext context)
@@ -147,5 +179,115 @@ namespace Infrastructure.Persistence
                 await context.SaveChangesAsync();
             }
         }
+
+        public static async Task SeedSamplesSectorsDataAsync(ApplicationDbContext context)
+        {
+            // Seed, if necessary
+            if (!context.Sectors.Any())
+            {
+                context.Sectors.AddRange(new List<Sector>() {
+                    new Sector("All"),
+                    new Sector("P&R"),
+                    new Sector("I&E"),
+                    new Sector("A&T")
+                    });
+
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public static async Task SeedSamplesPermissionsDataAsync(ApplicationDbContext context)
+        {
+            // Seed, if necessary
+            if (!context.Permissions.Any())
+            {
+                context.Permissions.AddRange(new List<Permission>() {
+                    new Permission("All"),
+                    new Permission("ADD"),
+                    new Permission("VIEW"),
+                    new Permission("DELETE"),
+                    new Permission("EXPORT")
+                    });
+
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public static async Task SeedSamplesDepartmentsDataAsync(ApplicationDbContext context)
+        {
+            // Seed, if necessary
+            if (!context.Departments.Any())
+            {
+                context.Departments.AddRange(new List<Department>() {
+                new Department("DEAULT"),
+                new Department("IT"),
+                new Department("Facility"),
+                new Department("Finance"),
+                new Department("IE"),
+                new Department("LEAN"),
+                new Department("MFG"),
+                new Department("Material"),
+                new Department("Planing"),
+                new Department("TE"),
+                new Department("IC"),
+                new Department("SQE"),
+                new Department("HR"),
+                new Department("PUR"),
+                new Department("ME"),
+                new Department("Shipping"),
+                new Department("PMO"),
+                new Department("SCM"),
+                new Department("CMRO"),
+                new Department("EHS") });
+
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public static async Task SeedSamplesWcsDataAsync(ApplicationDbContext context)
+        {
+            // Seed, if necessary
+            if (!context.Workcells.Any())
+            {
+                context.Workcells.AddRange(new List<Workcell>() {
+                new Workcell("DEAULT"),
+                new Workcell("HP"),
+                new Workcell("IROBOT"),
+                new Workcell("CPS"),
+                new Workcell("HPLSJ"),
+                new Workcell("MAKERBOT"),
+                new Workcell("ZEBRA"),
+                new Workcell("ELECTROLX"),
+                new Workcell("EMERSON"),
+                new Workcell("FPA"),
+                new Workcell("GE"),
+                new Workcell("INCUBATOR"),
+                new Workcell("IROBOT"),
+                new Workcell("LOREAL"),
+                new Workcell("SOLAREDGE"),
+                new Workcell("TRAEGER"),
+                new Workcell("WHIRLPOOL"),
+                new Workcell("XEROX"),
+                new Workcell("DANAHER"),
+                new Workcell("FORD"),
+                new Workcell("JE"),
+                new Workcell("OSRAM"),
+                new Workcell("ROADTRACK"),
+                new Workcell("SHARP"),
+                new Workcell("TESLA"),
+                new Workcell("VALEO"),
+                new Workcell("UAT"),
+                new Workcell("LITTLEBITS"),
+                new Workcell("TTEC"),
+                new Workcell("SUMUP"),
+                new Workcell("FUNCTION"),
+
+                });
+
+                await context.SaveChangesAsync();
+            }
+        }
+
+
     }
 }

@@ -35,9 +35,13 @@ namespace WebApi
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
+                    await ApplicationDbContextSeed.SeedSamplesSectorsDataAsync(context);
+                    await ApplicationDbContextSeed.SeedSamplesSitesDataAsync(context);
+                    await ApplicationDbContextSeed.SeedSamplesWcsDataAsync(context);
+                    await ApplicationDbContextSeed.SeedSamplesDepartmentsDataAsync(context);
+                    await ApplicationDbContextSeed.SeedSamplesPermissionsDataAsync(context);
                     await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager, roleManager);
                     await ApplicationDbContextSeed.SeedSampleCityDataAsync(context);
-                    await ApplicationDbContextSeed.SeedSamplesSitesDataAsync(context);
                 }
                 catch (Exception ex)
                 {

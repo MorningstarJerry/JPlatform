@@ -38,6 +38,8 @@ namespace Infrastructure.Persistence
         public DbSet<Workcell> Workcells { get; set; }
         public DbSet<Site> Sites { get; set; }
         public DbSet<Sector> Sectors { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
