@@ -40,6 +40,7 @@ namespace Infrastructure.Persistence
         public DbSet<Sector> Sectors { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Permission> Permissions { get; set; }
+        public DbSet<FacilityUser> facilityUsers { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -68,7 +69,8 @@ namespace Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly())
+                .Entity<FacilityUser>().ToTable("users");
 
             base.OnModelCreating(builder);
         }

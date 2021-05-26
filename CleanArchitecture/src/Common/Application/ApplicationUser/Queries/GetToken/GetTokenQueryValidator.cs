@@ -6,9 +6,9 @@ namespace Application.ApplicationUser.Queries.GetToken
     {
         public GetTokenQueryValidator()
         {
-            RuleFor(v => v.Email)
-                .MaximumLength(100).WithMessage("Email must not exceed 100 characters.")
-                .NotEmpty().WithMessage("Email is required.");
+            RuleFor(v => v.Phone)
+                .MaximumLength(100).WithMessage("Phone must not exceed 100 characters.")
+                .NotEmpty().WithMessage("Phone is required.");
 
             RuleFor(v => v.Password)
                 .NotEmpty().WithMessage("Password is required.");

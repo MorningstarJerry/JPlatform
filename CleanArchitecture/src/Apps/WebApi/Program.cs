@@ -40,7 +40,7 @@ namespace WebApi
                     await ApplicationDbContextSeed.SeedSamplesWcsDataAsync(context);
                     await ApplicationDbContextSeed.SeedSamplesDepartmentsDataAsync(context);
                     await ApplicationDbContextSeed.SeedSamplesPermissionsDataAsync(context);
-                    await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager, roleManager);
+                    await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager, roleManager, context);
                     await ApplicationDbContextSeed.SeedSampleCityDataAsync(context);
                 }
                 catch (Exception ex)

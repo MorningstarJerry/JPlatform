@@ -7,8 +7,8 @@ namespace Application.ApplicationUser.Queries.GetToken
 {
     public class GetTokenQuery :IRequestWrapper<LoginResponse>
     {
-        public string Email { get; set; }
-
+        //public string Email { get; set; }
+        public string Phone { get; set; }
         public string Password { get; set; }
     }
 
@@ -25,7 +25,7 @@ namespace Application.ApplicationUser.Queries.GetToken
 
         public async Task<ServiceResult<LoginResponse>> Handle(GetTokenQuery request, CancellationToken cancellationToken)
         {
-            var user = await _identityService.CheckUserPassword(request.Email, request.Password);
+            var user = await _identityService.CheckUserPassword(request.Phone, request.Password);
 
             if (user == null)
                 return ServiceResult.Failed<LoginResponse>(ServiceError.ForbiddenError);

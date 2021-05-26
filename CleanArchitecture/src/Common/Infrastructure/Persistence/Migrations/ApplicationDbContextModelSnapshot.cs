@@ -430,6 +430,21 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<string>("WorkcellId")
                         .HasColumnType("varchar(95) CHARACTER SET utf8mb4");
 
+                    b.Property<string>("factory_location")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("phone")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("sap_no")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("type")
+                        .HasColumnType("int");
+
+                    b.Property<string>("wc")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");

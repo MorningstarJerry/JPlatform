@@ -20,5 +20,15 @@ namespace Infrastructure.Identity
         public Site Site { get; set; }
 
         public Sector Sector { get; set; }
+
+        public int type { get; set; }
+
+        public string sap_no { get; set; }
+
+        public string phone { get; set; }
+
+        public string factory_location { get; set; }
+
+        public string wc { get; set; }
     }
 }

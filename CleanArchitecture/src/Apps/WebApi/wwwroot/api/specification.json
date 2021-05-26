@@ -849,6 +849,10 @@
             "type": "string",
             "nullable": true
           },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
           "email": {
             "type": "string",
             "nullable": true
@@ -859,7 +863,7 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "email": {
+          "phone": {
             "type": "string",
             "nullable": true
           },

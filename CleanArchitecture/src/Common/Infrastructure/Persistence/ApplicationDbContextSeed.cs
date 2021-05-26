@@ -9,13 +9,13 @@ namespace Infrastructure.Persistence
 {
     public static class ApplicationDbContextSeed
     {
-        public static async Task SeedDefaultUserAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task SeedDefaultUserAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context)
         {
             var administratorRole = new IdentityRole("Administrator");
-            var jabilAdminRole = new IdentityRole("ADMIN");
-            var jabilEditorRole = new IdentityRole("EDITOR");
-            var jabilApproverRole = new IdentityRole("APPROVER");
-            var jabilUserRole = new IdentityRole("USER");
+            var jabilAdminRole = new IdentityRole("admin");
+            var jabilEditorRole = new IdentityRole("editor");
+            var jabilApproverRole = new IdentityRole("approver");
+            var jabilUserRole = new IdentityRole("user");
 
             if (roleManager.Roles.All(r => r.Name != administratorRole.Name))
             {
@@ -42,21 +42,33 @@ namespace Infrastructure.Persistence
                 await roleManager.CreateAsync(jabilUserRole);
             }
 
-            var defaultUser = new ApplicationUser { UserName = "iayti", Email = "test@test.com" };
-
-            if (userManager.Users.All(u => u.UserName != defaultUser.UserName))
-            {
-                await userManager.CreateAsync(defaultUser, "Matech_1850");
-                await userManager.AddToRolesAsync(defaultUser, new[] { administratorRole.Name });
-            }
-
-            //var defaultUser = new ApplicationUser { UserName = "admin", Email = "JerryDanks@Outlook.com", Site = new Site("HuangPu"), Sector = new Sector("All"), Workcell = new Workcell("Default"), Permission = new Permission("All"), Department= new Department("DEAULT") };
+            //var defaultUser = new ApplicationUser { UserName = "iayti", Email = "test@test.com" };
 
             //if (userManager.Users.All(u => u.UserName != defaultUser.UserName))
             //{
-            //    await userManager.CreateAsync(defaultUser, "admin");
-            //    await userManager.AddToRolesAsync(defaultUser, new[] { jabilAdminRole.Name });
+            //    await userManager.CreateAsync(defaultUser, "Matech_1850");
+            //    await userManager.AddToRolesAsync(defaultUser, new[] { administratorRole.Name });
             //}
+
+          
+            /******** sync users one time excute
+            foreach (var model in context.facilityUsers.ToList())
+            { 
+                var newUser = new ApplicationUser { UserName = model.sap_no, Email = model.sap_no, 
+                    sap_no= model.sap_no,
+                    wc = model.wc, 
+                    factory_location = model.factory_location,
+                    phone = model.phone,
+                    PhoneNumber = model.phone,
+                    LastName = model.name};
+
+                var task = await userManager.CreateAsync(newUser, "Test_123456");
+                if (task.Succeeded)
+                {
+                    userManager.AddToRolesAsync(newUser, new[] { jabilUserRole.Name }).Wait();
+                }
+            }
+            ***********/
         }
 
         public static async Task SeedSampleCityDataAsync(ApplicationDbContext context)

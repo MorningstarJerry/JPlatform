@@ -28,8 +28,8 @@ namespace Client.WorkerService
                     LoginClient loginClient = new LoginClient(baseUrl);
                     var result = await loginClient.CreateAsync(new GetTokenQuery
                     {
-                        Email = "test@test.com",
-                        Password = "Matech_1850"
+                        Phone = "18588850203",
+                        Password = "Test_123456"
                     }, stoppingToken);
 
                     if (result.Succeeded)
