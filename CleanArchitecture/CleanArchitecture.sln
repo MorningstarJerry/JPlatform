@@ -39,26 +39,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontVueApp", "FrontVueApp"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VueApp", "VueApp", "{519B5919-CE2F-4752-90E9-95B4390D33B4}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "JabilServiceCenter", "JabilServiceCenter\", "{9AD76BFC-2513-4EF3-837E-FD0F8B557A79}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_51290"
-		Debug.AspNetCompiler.PhysicalPath = "JabilServiceCenter\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51290\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_51290"
-		Release.AspNetCompiler.PhysicalPath = "JabilServiceCenter\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51290\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "51290"
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,10 +77,6 @@ Global
 		{4A15D4F0-37C0-4D2F-B157-4B7E434EE36B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A15D4F0-37C0-4D2F-B157-4B7E434EE36B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A15D4F0-37C0-4D2F-B157-4B7E434EE36B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AD76BFC-2513-4EF3-837E-FD0F8B557A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AD76BFC-2513-4EF3-837E-FD0F8B557A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AD76BFC-2513-4EF3-837E-FD0F8B557A79}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AD76BFC-2513-4EF3-837E-FD0F8B557A79}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,7 +93,6 @@ Global
 		{1F78AFCE-8B7B-4A98-A09D-BE185694488F} = {F8A7E80E-BA7E-40A5-A950-D63ABA0EC731}
 		{4A15D4F0-37C0-4D2F-B157-4B7E434EE36B} = {D638410D-08F3-4042-85CD-1A12F58C06D8}
 		{519B5919-CE2F-4752-90E9-95B4390D33B4} = {6050D039-E0C1-4D31-8873-81B60A138FF9}
-		{9AD76BFC-2513-4EF3-837E-FD0F8B557A79} = {6050D039-E0C1-4D31-8873-81B60A138FF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {35E1D188-84DC-4673-B815-9E76A22A070C}

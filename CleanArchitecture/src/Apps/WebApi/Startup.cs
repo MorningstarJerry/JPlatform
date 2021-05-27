@@ -66,6 +66,15 @@ namespace WebApi
                 configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
             });
 
+            string[] allowUrls = {"https://*","http://*" };
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CORS", policy =>
+                {
+                    //policy.AllowAnyOrigin();
+                    policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials().SetIsOriginAllowed(_ => true);
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -96,6 +105,7 @@ namespace WebApi
                 settings.DocumentPath = "/api/specification.json";
             });
 
+            app.UseCors("CORS");
             app.UseRouting();
             app.UseAuthentication();
             app.UseIdentityServer();
