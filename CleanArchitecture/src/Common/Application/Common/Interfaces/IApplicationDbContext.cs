@@ -16,6 +16,7 @@ namespace Application.Common.Interfaces
         DbSet<Site> Sites { get; set; }
         DbSet<Sector> Sectors { get; set; }
         DbSet<Workcell> Workcells { get; set; }
+        DbSet<FacOrder> facOrders { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

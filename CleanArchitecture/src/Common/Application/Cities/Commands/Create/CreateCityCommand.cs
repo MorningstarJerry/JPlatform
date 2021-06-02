@@ -33,11 +33,9 @@ namespace Application.Cities.Commands.Create
             };
 
             entity.DomainEvents.Add(new CityCreatedEvent(entity));
-
             await _context.Cities.AddAsync(entity, cancellationToken);
 
             await _context.SaveChangesAsync(cancellationToken);
-
             return ServiceResult.Success(_mapper.Map<CityDto>(entity));
         }
     }

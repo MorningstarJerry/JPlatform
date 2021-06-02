@@ -50,7 +50,26 @@ namespace Infrastructure.Persistence
             //    await userManager.AddToRolesAsync(defaultUser, new[] { administratorRole.Name });
             //}
 
-          
+            /*Add a Test User****************
+            var newUser = new ApplicationUser
+            {
+                UserName = "Jerry",
+                Email = "Jerry_Liu4765@Jabil.com",
+                sap_no = "2294765",
+                wc = "IE",
+                factory_location = "IE",
+                phone = "18588850203",
+                PhoneNumber = "18588850203",
+                LastName = "Liu"
+            };
+
+            var task = await userManager.CreateAsync(newUser, "Test_123456");
+            if (task.Succeeded)
+            {
+                userManager.AddToRolesAsync(newUser, new[] { jabilUserRole.Name }).Wait();
+            }
+            *******************************/
+
             /******** sync users one time excute
             foreach (var model in context.facilityUsers.ToList())
             { 

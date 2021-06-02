@@ -248,6 +248,38 @@
         ]
       }
     },
+    "/api/Facility": {
+      "post": {
+        "tags": [
+          "Facility"
+        ],
+        "operationId": "Facility_Create",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFacOrderCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceResultOfFacOrderCreateDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Login": {
       "post": {
         "tags": [
@@ -795,6 +827,223 @@
           "cityId": {
             "type": "integer",
             "format": "int32"
+          }
+        }
+      },
+      "ServiceResultOfFacOrderCreateDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ServiceResult"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/FacOrderCreateDto"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "FacOrderCreateDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fix_no": {
+            "type": "string",
+            "nullable": true
+          },
+          "fix_describe": {
+            "type": "string",
+            "nullable": true
+          },
+          "fix_location": {
+            "type": "string",
+            "nullable": true
+          },
+          "fix_location_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fix_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "fix_type_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uid": {
+            "type": "string",
+            "nullable": true
+          },
+          "fix_uid": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rated": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmed_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finish_img": {
+            "type": "string",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finish_uid": {
+            "type": "string",
+            "nullable": true
+          },
+          "finish_describe": {
+            "type": "string",
+            "nullable": true
+          },
+          "first_pic": {
+            "type": "string",
+            "nullable": true
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "rated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "remark": {
+            "type": "string",
+            "nullable": true
+          },
+          "deleted_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "user_confirmed_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fix_item": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileStores": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/FileStoresCreateDto"
+            }
+          }
+        }
+      },
+      "FileStoresCreateDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileType": {
+            "type": "string",
+            "nullable": true
+          },
+          "extname": {
+            "type": "string",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateFacOrderCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "fix_location": {
+            "type": "string",
+            "nullable": true
+          },
+          "fix_location_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fix_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "fix_type_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fix_item": {
+            "type": "string",
+            "nullable": true
+          },
+          "fix_describe": {
+            "type": "string",
+            "nullable": true
+          },
+          "uid": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fileStores": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/FileStoresCreateDto"
+            }
           }
         }
       },

@@ -41,6 +41,8 @@ namespace Infrastructure.Persistence
         public DbSet<Department> Departments { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<FacilityUser> facilityUsers { get; set; }
+        public DbSet<FacOrder> facOrders { get; set; }
+        public DbSet<FileStores> FileStores { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -69,8 +71,9 @@ namespace Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly())
-                .Entity<FacilityUser>().ToTable("users");
+            var modelBuilder = builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.Entity<FacilityUser>().ToTable("users");
+            modelBuilder.Entity<FacOrder>().ToTable("fix_products");
 
             base.OnModelCreating(builder);
         }
