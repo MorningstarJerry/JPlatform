@@ -1,21 +1,23 @@
-﻿using System;
+﻿using Mapster;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.Entities;
 
 namespace Application.Dto.Facility
 {
-    public class FacOrderCreateDto
+    public class FacOrderCreateDto 
     {
-        public int id { get; set; }
+        public Int64 id { get; set; }
         public string fix_no { get; set; }
         public string fix_describe { get; set; }
         public string fix_location { get; set; }
-        public int fix_location_id { get; set; }
+        public string fix_location_id { get; set; }
         public string fix_type { get; set; }
-        public int fix_type_id { get; set; }
+        public string fix_type_id { get; set; }
         public string uid { get; set; }
         public string? fix_uid { get; set; }
-        public int status { get; set; }
+        public string status { get; set; }
         public string? rated { get; set; }
         public DateTime? confirmed_at { get; set; }
         public DateTime? finished_at { get; set; }
@@ -33,5 +35,7 @@ namespace Application.Dto.Facility
         public string? fix_item { get; set; }
 
         public IList<FileStoresCreateDto> FileStores { get; set; }
+
+       
     }
 }

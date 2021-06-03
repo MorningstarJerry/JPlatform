@@ -41,16 +41,17 @@ namespace Application.Facility.Commands
             var entity = new FacOrder
             {
                 fix_no = DateTime.Now.Ticks.ToString(),
-                fix_location_id = request.fix_location_id,
+                fix_location_id = request.fix_location_id.ToString(),
                 fix_location = request.fix_location,
-                fix_type_id = request.fix_type_id,
+                fix_type_id = request.fix_type_id.ToString(),
                 fix_type = request.fix_type,
                 fix_item = request.fix_item,
                 remark = request.fix_describe,
                 fix_describe = request.fix_describe,
                 uid =  request.uid,
                 first_pic= GetfirstPics(),
-                status = request.status,
+                status = request.status.ToString(),
+                created_at = DateTime.Now,
                 FileStores = _mapper.Map<List<FileStores>>(request.fileStores)
             };
 

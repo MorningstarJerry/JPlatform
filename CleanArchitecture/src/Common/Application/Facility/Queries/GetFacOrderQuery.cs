@@ -5,16 +5,13 @@ using Application.Dto.Facility;
 using Mapster;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Facility.Queries
 {
-   public class GetFacOrderQuery : IRequestWrapper<PaginatedList<FacOrderCreateDto>>
+    public class GetFacOrderQuery : IRequestWrapper<PaginatedList<FacOrderCreateDto>>
     {
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;
@@ -34,11 +31,21 @@ namespace Application.Facility.Queries
 
         public async Task<ServiceResult<PaginatedList<FacOrderCreateDto>>> Handle(GetFacOrderQuery request, CancellationToken cancellationToken)
         {
+            //var test = await _context.facOrders.AsNoTracking();
+            /*
             PaginatedList<FacOrderCreateDto> list = await _context.facOrders.AsNoTracking()
-                .Where(x=>x.status==request.Status)
-                .OrderByDescending(o => o.created_at)
-                .ProjectToType<FacOrderCreateDto>(_mapper.Config)
-                .PaginatedListAsync(request.PageNumber, request.PageSize);
+                            .Where(x => x.status == 0)
+                            .OrderByDescending(o => o.created_at)
+                            .Include(d => d.FileStores)
+                            .ProjectToType<FacOrderCreateDto>(_mapper.Config)
+                            .PaginatedListAsync(request.PageNumber, request.PageSize);
+            */
+            PaginatedList<FacOrderCreateDto> list = await _context.facOrders.AsNoTracking()
+                            .Where(x => x.status == request.Status.ToString())
+                           .OrderByDescending(o => o.created_at)
+                           .ProjectToType<FacOrderCreateDto>(_mapper.Config)
+                           .PaginatedListAsync(request.PageNumber, request.PageSize);
+
 
             return list.Items.Any() ? ServiceResult.Success(list) : ServiceResult.Failed<PaginatedList<FacOrderCreateDto>>(ServiceError.NotFount);
         }

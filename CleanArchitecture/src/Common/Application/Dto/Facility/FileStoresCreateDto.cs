@@ -1,16 +1,25 @@
-﻿using System;
+﻿using Domain.Entities;
+using Mapster;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Application.Dto.Facility
 {
-    public class FileStoresCreateDto
+    public class FileStoresCreateDto : IRegister
     {
-        public string name { get; set; }
-        public string fileType { get; set; }
-        public string extname { get; set; }
-        public string path { get; set; }
-        public long size { get; set; }
-        public string url { get; set; }
+        public string? name { get; set; }
+        public string? fileType { get; set; }
+        public string? extname { get; set; }
+        public string? path { get; set; }
+        public long? size { get; set; } = 0;
+        public string? url { get; set; }
+
+        public void Register(TypeAdapterConfig config)
+        {
+            config.NewConfig<FileStores, FileStoresCreateDto>()
+            .Map(dest => dest.size,
+                src => $"{long.Parse(src.size)}");
+        }
     }
 }
