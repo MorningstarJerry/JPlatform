@@ -35,7 +35,6 @@ namespace Application.Dto.Facility
         public string? fix_item { get; set; }
 
         public IList<FileStoresCreateDto> FileStores { get; set; }
-
-       
+        public IList<CompleteFileStoresCreateDto> CompleteFileStores { get; set; }
     }
 }

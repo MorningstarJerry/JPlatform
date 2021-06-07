@@ -33,5 +33,6 @@ namespace Domain.Entities
         public string? fix_item { get; set; }
 
         public IList<FileStores> FileStores { get; set; }
+        public IList<CompleteFileStores> CompleteFileStores { get; set; }
     }
 }

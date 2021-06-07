@@ -25,5 +25,17 @@ namespace WebApi.Controllers
         {
             return Ok(await Mediator.Send(command));
         }
+
+        [HttpPut("confirm")]
+        public async Task<ActionResult<ServiceResult<FacOrderCreateDto>>> Update(UpdateFacOrderCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+
+        [HttpPut("finish")]
+        public async Task<ActionResult<ServiceResult<FacOrderCreateDto>>> Finish(FinishFacOrderCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
     }
 }

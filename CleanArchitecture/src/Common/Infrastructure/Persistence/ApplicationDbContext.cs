@@ -43,6 +43,7 @@ namespace Infrastructure.Persistence
         public DbSet<FacilityUser> facilityUsers { get; set; }
         public DbSet<FacOrder> facOrders { get; set; }
         public DbSet<FileStores> FileStores { get; set; }
+        public DbSet<CompleteFileStores> CompleteFileStores { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

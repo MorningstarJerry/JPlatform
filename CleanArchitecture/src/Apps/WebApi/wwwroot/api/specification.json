@@ -327,6 +327,70 @@
         }
       }
     },
+    "/api/Facility/confirm": {
+      "put": {
+        "tags": [
+          "Facility"
+        ],
+        "operationId": "Facility_Update",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFacOrderCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceResultOfFacOrderCreateDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Facility/finish": {
+      "put": {
+        "tags": [
+          "Facility"
+        ],
+        "operationId": "Facility_Finish",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FinishFacOrderCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceResultOfFacOrderCreateDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Login": {
       "post": {
         "tags": [
@@ -1015,10 +1079,48 @@
             "items": {
               "$ref": "#/components/schemas/FileStoresCreateDto"
             }
+          },
+          "completeFileStores": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CompleteFileStoresCreateDto"
+            }
           }
         }
       },
       "FileStoresCreateDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileType": {
+            "type": "string",
+            "nullable": true
+          },
+          "extname": {
+            "type": "string",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CompleteFileStoresCreateDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -1111,6 +1213,57 @@
             "nullable": true,
             "items": {
               "$ref": "#/components/schemas/FileStoresCreateDto"
+            }
+          }
+        }
+      },
+      "UpdateFacOrderCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "fix_uid": {
+            "type": "string",
+            "nullable": true
+          },
+          "remark": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "due_date": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "FinishFacOrderCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "finish_uid": {
+            "type": "string",
+            "nullable": true
+          },
+          "finish_describe": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileStores": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CompleteFileStoresCreateDto"
             }
           }
         }
