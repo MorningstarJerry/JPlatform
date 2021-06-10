@@ -14,26 +14,51 @@ namespace WebApi.Controllers
     public class FacilityController : BaseApiController
     {
         [HttpGet]
-        public async Task<ActionResult<ServiceResult<List<FacOrderCreateDto>>>> GetAllFacOrders([FromQuery] GetFacOrderQuery query,CancellationToken cancellationToken)
+        public async Task<ActionResult<ServiceResult<List<FacOrderDto>>>> GetAllFacOrders([FromQuery] GetFacOrderQuery query,CancellationToken cancellationToken)
+        {
+            //Cancellation token example.
+            return Ok(await Mediator.Send(query, cancellationToken));
+        }
+
+        [HttpGet]
+        [Route("myself/created/orders")]
+        public async Task<ActionResult<ServiceResult<List<FacOrderDto>>>> GetMyCreateFacOrders([FromQuery] GetMyCreateFacOrderQuery query, CancellationToken cancellationToken)
+        {
+            //Cancellation token example.
+            return Ok(await Mediator.Send(query, cancellationToken));
+        }
+
+        [HttpGet]
+        [Route("myself/updated/orders")]
+        public async Task<ActionResult<ServiceResult<List<FacOrderDto>>>> GetMyUpdateFacOrders([FromQuery] GetMyHandleFacOrderQuery query, CancellationToken cancellationToken)
+        {
+            //Cancellation token example.
+            return Ok(await Mediator.Send(query, cancellationToken));
+        }
+
+
+        [HttpGet]
+        [Route("myself/finished/orders")]
+        public async Task<ActionResult<ServiceResult<List<FacOrderDto>>>> GetMyFinishedFacOrders([FromQuery] GetMyFinishFacOrderQuery query, CancellationToken cancellationToken)
         {
             //Cancellation token example.
             return Ok(await Mediator.Send(query, cancellationToken));
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResult<FacOrderCreateDto>>> Create(CreateFacOrderCommand command)
+        public async Task<ActionResult<ServiceResult<FacOrderDto>>> Create(CreateFacOrderCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
 
         [HttpPut("confirm")]
-        public async Task<ActionResult<ServiceResult<FacOrderCreateDto>>> Update(UpdateFacOrderCommand command)
+        public async Task<ActionResult<ServiceResult<FacOrderDto>>> Update(UpdateFacOrderCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
 
         [HttpPut("finish")]
-        public async Task<ActionResult<ServiceResult<FacOrderCreateDto>>> Finish(FinishFacOrderCommand command)
+        public async Task<ActionResult<ServiceResult<FacOrderDto>>> Finish(FinishFacOrderCommand command)
         {
             return Ok(await Mediator.Send(command));
         }

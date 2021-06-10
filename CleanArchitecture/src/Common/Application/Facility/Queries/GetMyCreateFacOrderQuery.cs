@@ -11,28 +11,28 @@ using System.Threading.Tasks;
 
 namespace Application.Facility.Queries
 {
-    public class GetFacOrderQuery : IRequestWrapper<PaginatedList<FacOrderDto>>
+    public class GetMyCreateFacOrderQuery : IRequestWrapper<PaginatedList<FacOrderDto>>
     {
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;
-        public int Status { get; set; } = 0;
+        public string uid { get; set; }
     }
 
-    public class GetFacOrdersQueryHandler : IRequestHandlerWrapper<GetFacOrderQuery, PaginatedList<FacOrderDto>>
+    public class GetMyCreateFacOrderQueryHandler : IRequestHandlerWrapper<GetMyCreateFacOrderQuery, PaginatedList<FacOrderDto>>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
 
-        public GetFacOrdersQueryHandler(IApplicationDbContext context, IMapper mapper)
+        public GetMyCreateFacOrderQueryHandler(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<ServiceResult<PaginatedList<FacOrderDto>>> Handle(GetFacOrderQuery request, CancellationToken cancellationToken)
+        public async Task<ServiceResult<PaginatedList<FacOrderDto>>> Handle(GetMyCreateFacOrderQuery request, CancellationToken cancellationToken)
         {
             PaginatedList<FacOrderDto> list = await _context.FacOrders.AsNoTracking()
-                            .Where(x => x.status == request.Status.ToString())
+                            .Where(x => x.uid == request.uid)
                            .OrderByDescending(o => o.created_at)
                            .ProjectToType<FacOrderDto>(_mapper.Config)
                            .PaginatedListAsync(request.PageNumber, request.PageSize);

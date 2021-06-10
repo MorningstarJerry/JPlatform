@@ -3,15 +3,16 @@ using Application.Common.Models;
 using Application.Dto.Facility;
 using Domain.Entities;
 using MapsterMapper;
-using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Facility.Commands
 {
-    public class CreateFacOrderCommand : IRequestWrapper<FacOrderCreateDto>
+    public class CreateFacOrderCommand : IRequestWrapper<FacOrderDto>
     {
         public CreateFacOrderCommand() { fileStores = new List<FileStoresCreateDto>(); }
         public string fix_location { get; set; }
@@ -25,7 +26,7 @@ namespace Application.Facility.Commands
         public IList<FileStoresCreateDto> fileStores { get; set; }
     }
 
-    public class CreateFacOrderCommandHandler : IRequestHandlerWrapper<CreateFacOrderCommand, FacOrderCreateDto>
+    public class CreateFacOrderCommandHandler : IRequestHandlerWrapper<CreateFacOrderCommand, FacOrderDto>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -36,7 +37,7 @@ namespace Application.Facility.Commands
             _mapper = mapper;
         }
 
-        public async Task<ServiceResult<FacOrderCreateDto>> Handle(CreateFacOrderCommand request, CancellationToken cancellationToken)
+        public async Task<ServiceResult<FacOrderDto>> Handle(CreateFacOrderCommand request, CancellationToken cancellationToken)
         {
             var entity = new FacOrder
             {
@@ -48,24 +49,27 @@ namespace Application.Facility.Commands
                 fix_item = request.fix_item,
                 remark = request.fix_describe,
                 fix_describe = request.fix_describe,
-                uid =  request.uid,
-                first_pic= GetfirstPics(),
+                uid = request.uid,
+                first_pic = GetfirstPics(request.fix_location_id, request.fix_type_id),
                 status = request.status.ToString(),
                 created_at = DateTime.Now,
                 FileStores = _mapper.Map<List<FileStores>>(request.fileStores)
             };
 
-            await _context.facOrders.AddAsync(entity, cancellationToken);
+            await _context.FacOrders.AddAsync(entity, cancellationToken);
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return ServiceResult.Success(_mapper.Map<FacOrderCreateDto>(entity));
+            return ServiceResult.Success(_mapper.Map<FacOrderDto>(entity));
         }
 
-        //TODO：search pics by type& location
-        private string GetfirstPics()
+        private string GetfirstPics(int fix_location_id, int fix_type_id)
         {
-            return "Jerry";
+            var array = _context.ChargeMaps.AsNoTracking()
+                 .Where(x => x.area_id == fix_location_id && x.type_id == fix_type_id).Select(x => x.sap_no).ToArray();
+
+            var str = string.Join(",", array);
+            return string.IsNullOrEmpty(str) ? "" : str;
         }
     }
 }

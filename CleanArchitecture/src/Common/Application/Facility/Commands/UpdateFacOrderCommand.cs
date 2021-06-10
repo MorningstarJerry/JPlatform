@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Application.Facility.Commands
 {
-    public class UpdateFacOrderCommand : IRequestWrapper<FacOrderCreateDto>
+    public class UpdateFacOrderCommand : IRequestWrapper<FacOrderDto>
     {
         public long Id { get; set; }
         public string fix_uid { get; set; }
@@ -22,7 +22,7 @@ namespace Application.Facility.Commands
         public string due_date { get; set; }
     }
 
-    public class UpdateFacOrderCommandHandler : IRequestHandlerWrapper<UpdateFacOrderCommand, FacOrderCreateDto>
+    public class UpdateFacOrderCommandHandler : IRequestHandlerWrapper<UpdateFacOrderCommand, FacOrderDto>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -33,10 +33,10 @@ namespace Application.Facility.Commands
             _mapper = mapper;
         }
 
-        public async Task<ServiceResult<FacOrderCreateDto>> Handle(UpdateFacOrderCommand request, CancellationToken cancellationToken)
+        public async Task<ServiceResult<FacOrderDto>> Handle(UpdateFacOrderCommand request, CancellationToken cancellationToken)
         {
 
-            var entity = await _context.facOrders.FindAsync(request.Id);
+            var entity = await _context.FacOrders.FindAsync(request.Id);
 
             if (entity == null)
             {
@@ -57,7 +57,7 @@ namespace Application.Facility.Commands
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return ServiceResult.Success(_mapper.Map<FacOrderCreateDto>(entity));
+            return ServiceResult.Success(_mapper.Map<FacOrderDto>(entity));
         }
     }
 }

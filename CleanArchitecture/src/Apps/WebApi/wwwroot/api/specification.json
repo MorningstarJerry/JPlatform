@@ -289,7 +289,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServiceResultOfListOfFacOrderCreateDto"
+                  "$ref": "#/components/schemas/ServiceResultOfListOfFacOrderDto"
                 }
               }
             }
@@ -319,7 +319,154 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServiceResultOfFacOrderCreateDto"
+                  "$ref": "#/components/schemas/ServiceResultOfFacOrderDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Facility/myself/created/orders": {
+      "get": {
+        "tags": [
+          "Facility"
+        ],
+        "operationId": "Facility_GetMyCreateFacOrders",
+        "parameters": [
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 2
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceResultOfListOfFacOrderDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Facility/myself/updated/orders": {
+      "get": {
+        "tags": [
+          "Facility"
+        ],
+        "operationId": "Facility_GetMyUpdateFacOrders",
+        "parameters": [
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 2
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceResultOfListOfFacOrderDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Facility/myself/finished/orders": {
+      "get": {
+        "tags": [
+          "Facility"
+        ],
+        "operationId": "Facility_GetMyFinishedFacOrders",
+        "parameters": [
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 2
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceResultOfListOfFacOrderDto"
                 }
               }
             }
@@ -351,7 +498,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServiceResultOfFacOrderCreateDto"
+                  "$ref": "#/components/schemas/ServiceResultOfFacOrderDto"
                 }
               }
             }
@@ -383,7 +530,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServiceResultOfFacOrderCreateDto"
+                  "$ref": "#/components/schemas/ServiceResultOfFacOrderDto"
                 }
               }
             }
@@ -941,7 +1088,7 @@
           }
         }
       },
-      "ServiceResultOfListOfFacOrderCreateDto": {
+      "ServiceResultOfListOfFacOrderDto": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ServiceResult"
@@ -954,14 +1101,14 @@
                 "type": "array",
                 "nullable": true,
                 "items": {
-                  "$ref": "#/components/schemas/FacOrderCreateDto"
+                  "$ref": "#/components/schemas/FacOrderDto"
                 }
               }
             }
           }
         ]
       },
-      "FacOrderCreateDto": {
+      "FacOrderDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -1151,7 +1298,7 @@
           }
         }
       },
-      "ServiceResultOfFacOrderCreateDto": {
+      "ServiceResultOfFacOrderDto": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ServiceResult"
@@ -1164,7 +1311,7 @@
                 "nullable": true,
                 "oneOf": [
                   {
-                    "$ref": "#/components/schemas/FacOrderCreateDto"
+                    "$ref": "#/components/schemas/FacOrderDto"
                   }
                 ]
               }

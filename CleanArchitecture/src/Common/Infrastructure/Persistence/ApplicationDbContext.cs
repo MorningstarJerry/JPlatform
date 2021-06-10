@@ -40,10 +40,11 @@ namespace Infrastructure.Persistence
         public DbSet<Sector> Sectors { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Permission> Permissions { get; set; }
-        public DbSet<FacilityUser> facilityUsers { get; set; }
-        public DbSet<FacOrder> facOrders { get; set; }
+        public DbSet<FacilityUser> FacilityUsers { get; set; }
+        public DbSet<FacOrder> FacOrders { get; set; }
         public DbSet<FileStores> FileStores { get; set; }
         public DbSet<CompleteFileStores> CompleteFileStores { get; set; }
+        public DbSet<ChargeMap> ChargeMaps { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -75,6 +76,7 @@ namespace Infrastructure.Persistence
             var modelBuilder = builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             modelBuilder.Entity<FacilityUser>().ToTable("users");
             modelBuilder.Entity<FacOrder>().ToTable("fix_products");
+            modelBuilder.Entity<ChargeMap>().ToTable("pics");
 
             base.OnModelCreating(builder);
         }

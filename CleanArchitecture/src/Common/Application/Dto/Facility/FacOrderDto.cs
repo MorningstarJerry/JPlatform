@@ -6,7 +6,7 @@ using Domain.Entities;
 
 namespace Application.Dto.Facility
 {
-    public class FacOrderCreateDto 
+    public class FacOrderDto 
     {
         public Int64 id { get; set; }
         public string fix_no { get; set; }

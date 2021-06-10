@@ -8,15 +8,14 @@ namespace Application.Common.Interfaces
     public interface IApplicationDbContext
     {
         DbSet<City> Cities { get; set; }
-
         DbSet<District> Districts { get; set; }
-
         DbSet<Village> Villages { get; set; }
-
         DbSet<Site> Sites { get; set; }
         DbSet<Sector> Sectors { get; set; }
         DbSet<Workcell> Workcells { get; set; }
-        DbSet<FacOrder> facOrders { get; set; }
+        DbSet<FacilityUser> FacilityUsers { get; set; }
+        DbSet<FacOrder> FacOrders { get; set; }
+        DbSet<ChargeMap> ChargeMaps { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

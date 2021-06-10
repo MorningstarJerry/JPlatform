@@ -11,29 +11,29 @@ using System.Threading.Tasks;
 
 namespace Application.Facility.Queries
 {
-    public class GetFacOrderQuery : IRequestWrapper<PaginatedList<FacOrderDto>>
+   public class GetMyHandleFacOrderQuery : IRequestWrapper<PaginatedList<FacOrderDto>>
     {
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;
-        public int Status { get; set; } = 0;
+        public string uid { get; set; }
     }
 
-    public class GetFacOrdersQueryHandler : IRequestHandlerWrapper<GetFacOrderQuery, PaginatedList<FacOrderDto>>
+    public class GetMyHandleFacOrderQueryHandler : IRequestHandlerWrapper<GetMyHandleFacOrderQuery, PaginatedList<FacOrderDto>>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
 
-        public GetFacOrdersQueryHandler(IApplicationDbContext context, IMapper mapper)
+        public GetMyHandleFacOrderQueryHandler(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<ServiceResult<PaginatedList<FacOrderDto>>> Handle(GetFacOrderQuery request, CancellationToken cancellationToken)
+        public async Task<ServiceResult<PaginatedList<FacOrderDto>>> Handle(GetMyHandleFacOrderQuery request, CancellationToken cancellationToken)
         {
             PaginatedList<FacOrderDto> list = await _context.FacOrders.AsNoTracking()
-                            .Where(x => x.status == request.Status.ToString())
-                           .OrderByDescending(o => o.created_at)
+                            .Where(x => x.fix_uid == request.uid)
+                           .OrderByDescending(o => o.updated_at)
                            .ProjectToType<FacOrderDto>(_mapper.Config)
                            .PaginatedListAsync(request.PageNumber, request.PageSize);
 

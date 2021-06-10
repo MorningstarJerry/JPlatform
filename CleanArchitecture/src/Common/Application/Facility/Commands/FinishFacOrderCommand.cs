@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Application.Facility.Commands
 {
-    public class FinishFacOrderCommand : IRequestWrapper<FacOrderCreateDto>
+    public class FinishFacOrderCommand : IRequestWrapper<FacOrderDto>
     {
         public FinishFacOrderCommand() { fileStores = new List<CompleteFileStoresCreateDto>(); }
         public long Id { get; set; }
@@ -21,7 +21,7 @@ namespace Application.Facility.Commands
         public IList<CompleteFileStoresCreateDto> fileStores { get; set; }
     }
 
-    public class FinishFacOrderCommandHandler : IRequestHandlerWrapper<FinishFacOrderCommand, FacOrderCreateDto>
+    public class FinishFacOrderCommandHandler : IRequestHandlerWrapper<FinishFacOrderCommand, FacOrderDto>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -32,10 +32,10 @@ namespace Application.Facility.Commands
             _mapper = mapper;
         }
 
-        public async Task<ServiceResult<FacOrderCreateDto>> Handle(FinishFacOrderCommand request, CancellationToken cancellationToken)
+        public async Task<ServiceResult<FacOrderDto>> Handle(FinishFacOrderCommand request, CancellationToken cancellationToken)
         {
 
-            var entity = await _context.facOrders.FindAsync(request.Id);
+            var entity = await _context.FacOrders.FindAsync(request.Id);
 
             if (entity == null)
             {
@@ -57,7 +57,7 @@ namespace Application.Facility.Commands
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return ServiceResult.Success(_mapper.Map<FacOrderCreateDto>(entity));
+            return ServiceResult.Success(_mapper.Map<FacOrderDto>(entity));
         }
     }
 }
