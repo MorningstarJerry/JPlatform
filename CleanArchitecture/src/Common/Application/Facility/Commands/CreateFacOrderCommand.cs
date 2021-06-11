@@ -52,7 +52,7 @@ namespace Application.Facility.Commands
                 uid = request.uid,
                 first_pic = GetfirstPics(request.fix_location_id, request.fix_type_id),
                 status = request.status.ToString(),
-                created_at = DateTime.Now,
+                created_at =  DateTime.Now,
                 FileStores = _mapper.Map<List<FileStores>>(request.fileStores)
             };
 

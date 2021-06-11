@@ -16,7 +16,13 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<ServiceResult<List<FacOrderDto>>>> GetAllFacOrders([FromQuery] GetFacOrderQuery query,CancellationToken cancellationToken)
         {
-            //Cancellation token example.
+            return Ok(await Mediator.Send(query, cancellationToken));
+        }
+
+        [HttpGet]
+        [Route("user/orders")]
+        public async Task<ActionResult<ServiceResult<List<FacOrderDto>>>> GetUserFacOrders([FromQuery] GetFacOrderByUserQuery query, CancellationToken cancellationToken)
+        {
             return Ok(await Mediator.Send(query, cancellationToken));
         }
 
@@ -24,7 +30,6 @@ namespace WebApi.Controllers
         [Route("myself/created/orders")]
         public async Task<ActionResult<ServiceResult<List<FacOrderDto>>>> GetMyCreateFacOrders([FromQuery] GetMyCreateFacOrderQuery query, CancellationToken cancellationToken)
         {
-            //Cancellation token example.
             return Ok(await Mediator.Send(query, cancellationToken));
         }
 
@@ -32,7 +37,6 @@ namespace WebApi.Controllers
         [Route("myself/updated/orders")]
         public async Task<ActionResult<ServiceResult<List<FacOrderDto>>>> GetMyUpdateFacOrders([FromQuery] GetMyHandleFacOrderQuery query, CancellationToken cancellationToken)
         {
-            //Cancellation token example.
             return Ok(await Mediator.Send(query, cancellationToken));
         }
 
@@ -41,7 +45,6 @@ namespace WebApi.Controllers
         [Route("myself/finished/orders")]
         public async Task<ActionResult<ServiceResult<List<FacOrderDto>>>> GetMyFinishedFacOrders([FromQuery] GetMyFinishFacOrderQuery query, CancellationToken cancellationToken)
         {
-            //Cancellation token example.
             return Ok(await Mediator.Send(query, cancellationToken));
         }
 
@@ -59,6 +62,12 @@ namespace WebApi.Controllers
 
         [HttpPut("finish")]
         public async Task<ActionResult<ServiceResult<FacOrderDto>>> Finish(FinishFacOrderCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+
+        [HttpPut("evaluation")]
+        public async Task<ActionResult<ServiceResult<FacOrderDto>>> Evaluation(EvaluationFacOrderCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
