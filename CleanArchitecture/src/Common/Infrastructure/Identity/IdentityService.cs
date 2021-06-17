@@ -96,5 +96,17 @@ namespace Infrastructure.Identity
 
             return _mapper.Map<List<ApplicationRoleDto>>(roles);
         }
+
+        public async Task<ApplicationUserDto> GetUserById(string userId)
+        {
+            ApplicationUser user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if(user !=null)
+            {
+                return _mapper.Map<ApplicationUserDto>(user);
+            }
+
+            return null;
+        }
     }
 }

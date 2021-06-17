@@ -18,5 +18,7 @@ namespace Application.Common.Interfaces
         Task<Result> DeleteUserAsync(string userId);
 
         Task<List<ApplicationRoleDto>> GetRolesAsync();
+
+        Task<ApplicationUserDto> GetUserById(string userId);
     }
 }

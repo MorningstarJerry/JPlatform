@@ -52,6 +52,8 @@ namespace Application.Facility.Commands
             if (!string.IsNullOrEmpty(request.status))
                 entity.status = request.status;
 
+            entity.confirmed_at = DateTime.Now;
+
             if (!string.IsNullOrEmpty(request.due_date))
                 entity.due_date = Convert.ToDateTime(request.due_date);
 

@@ -852,6 +852,42 @@
         ]
       }
     },
+    "/api/Users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_GetUserById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceResultOfApplicationUserDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/Villages": {
       "get": {
         "tags": [
@@ -1593,6 +1629,10 @@
           "wc": {
             "type": "string",
             "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -1744,6 +1784,27 @@
             "nullable": true
           }
         }
+      },
+      "ServiceResultOfApplicationUserDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ServiceResult"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/ApplicationUserDto"
+                  }
+                ]
+              }
+            }
+          }
+        ]
       },
       "ServiceResultOfPaginatedListOfVillageDto": {
         "allOf": [

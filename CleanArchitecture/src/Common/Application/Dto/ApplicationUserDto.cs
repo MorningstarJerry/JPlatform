@@ -19,5 +19,7 @@ namespace Application.Dto
         public string factory_location { get; set; }
 
         public string wc { get; set; }
+
+        public string LastName { get; set; }
     }
 }
