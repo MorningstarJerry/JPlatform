@@ -33,7 +33,7 @@ namespace Application.Facility.Commands
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
         private readonly IHttpClientHandler _httpClient;
-        private string ClientApi { get; } = "open-weather-api";
+        private string ClientApi { get; } = "uni-appSms-api";
 
         public CreateFacOrderCommandHandler(IApplicationDbContext context, IMapper mapper, IHttpClientHandler httpClient)
         {
