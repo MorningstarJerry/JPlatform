@@ -1,7 +1,9 @@
 ﻿using Application.Common.Interfaces;
+using Application.Common.Mapping;
 using Application.Common.Models;
 using Application.Dto.Facility;
 using Domain.Entities;
+using Domain.Enums;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -30,11 +32,14 @@ namespace Application.Facility.Commands
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IHttpClientHandler _httpClient;
+        private string ClientApi { get; } = "open-weather-api";
 
-        public CreateFacOrderCommandHandler(IApplicationDbContext context, IMapper mapper)
+        public CreateFacOrderCommandHandler(IApplicationDbContext context, IMapper mapper, IHttpClientHandler httpClient)
         {
             _context = context;
             _mapper = mapper;
+            _httpClient = httpClient;
         }
 
         public async Task<ServiceResult<FacOrderDto>> Handle(CreateFacOrderCommand request, CancellationToken cancellationToken)
@@ -52,13 +57,17 @@ namespace Application.Facility.Commands
                 uid = request.uid,
                 first_pic = GetfirstPics(request.fix_location_id, request.fix_type_id),
                 status = request.status.ToString(),
-                created_at =  DateTime.Now,
+                created_at = DateTime.Now,
                 FileStores = _mapper.Map<List<FileStores>>(request.fileStores)
             };
 
             await _context.FacOrders.AddAsync(entity, cancellationToken);
 
             await _context.SaveChangesAsync(cancellationToken);
+
+            SmsRequest reqSms = new SmsRequest("18588850203");
+            await _httpClient.GenericRequest<SmsRequest, SmsResponse>(ClientApi, string.Concat("https://30905186-20b1-4fe9-9a60-86846a85f7f6.bspapp.com/http/sendSms?", StringExtensions
+              .ParseObjectToQueryString(reqSms, true)), cancellationToken, MethodType.Get);
 
             return ServiceResult.Success(_mapper.Map<FacOrderDto>(entity));
         }
@@ -71,5 +80,21 @@ namespace Application.Facility.Commands
             var str = string.Join(",", array);
             return string.IsNullOrEmpty(str) ? "" : str;
         }
+    }
+
+    public class SmsRequest
+    {
+        public string phone { get; set; }
+        public SmsRequest(string phone)
+        {
+            this.phone = phone;
+        }
+    }
+
+    public class SmsResponse
+    {
+        public string code { get; set; }
+        public string errorCode { get; set; }
+        public string success { get; set; }
     }
 }
