@@ -108,5 +108,18 @@ namespace Infrastructure.Identity
 
             return null;
         }
+
+        public async Task<IdentityResult> UpdateUserAvatarAsync(string userId, string gsm)
+        {
+            ApplicationUser user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            
+            if (user != null)
+            {
+                user.Gsm = gsm;
+                return await _userManager.UpdateAsync(user);
+            }
+
+            return null;
+        }
     }
 }

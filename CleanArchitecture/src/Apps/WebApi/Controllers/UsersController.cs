@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.ApplicationUser.Commands.Update;
 using Application.ApplicationUser.Queries;
 using Application.Cities.Commands.Create;
 using Application.Cities.Commands.Delete;
@@ -21,6 +22,12 @@ namespace WebApi.Controllers
         public async Task<ActionResult<ServiceResult<ApplicationUserDto>>> GetUserById([FromQuery] string id)
         {
             return Ok(await Mediator.Send(new GetUserbyIdQuery { id = id }));
+        }
+
+        [HttpPut("avatar")]
+        public async Task<ActionResult<ServiceResult<ApplicationUserDto>>> Update(UpadteUserAvatar command)
+        {
+            return Ok(await Mediator.Send(command));
         }
     }
 }

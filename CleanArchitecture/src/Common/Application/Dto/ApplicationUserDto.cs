@@ -21,5 +21,7 @@ namespace Application.Dto
         public string wc { get; set; }
 
         public string LastName { get; set; }
+
+        public string Gsm { get; set; }
     }
 }

@@ -888,6 +888,43 @@
         ]
       }
     },
+    "/api/Users/avatar": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_Update",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpadteUserAvatar"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceResultOfApplicationUserDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/Villages": {
       "get": {
         "tags": [
@@ -1633,6 +1670,10 @@
           "lastName": {
             "type": "string",
             "nullable": true
+          },
+          "gsm": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -1805,6 +1846,20 @@
             }
           }
         ]
+      },
+      "UpadteUserAvatar": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatar": {
+            "type": "string",
+            "nullable": true
+          }
+        }
       },
       "ServiceResultOfPaginatedListOfVillageDto": {
         "allOf": [

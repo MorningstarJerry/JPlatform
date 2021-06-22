@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Common.Models;
 using Application.Dto;
+using Microsoft.AspNetCore.Identity;
 
 namespace Application.Common.Interfaces
 {
@@ -20,5 +21,8 @@ namespace Application.Common.Interfaces
         Task<List<ApplicationRoleDto>> GetRolesAsync();
 
         Task<ApplicationUserDto> GetUserById(string userId);
+
+        Task<IdentityResult> UpdateUserAvatarAsync(string userId, string gsm);
+
     }
 }
