@@ -34,12 +34,14 @@ namespace Application.Facility.Commands
         private readonly IMapper _mapper;
         private readonly IHttpClientHandler _httpClient;
         private string ClientApi { get; } = "uni-appSms-api";
+        private readonly IIdentityService _identityService;
 
-        public CreateFacOrderCommandHandler(IApplicationDbContext context, IMapper mapper, IHttpClientHandler httpClient)
+        public CreateFacOrderCommandHandler(IApplicationDbContext context, IMapper mapper, IHttpClientHandler httpClient, IIdentityService identityService)
         {
             _context = context;
             _mapper = mapper;
             _httpClient = httpClient;
+            _identityService = identityService;
         }
 
         public async Task<ServiceResult<FacOrderDto>> Handle(CreateFacOrderCommand request, CancellationToken cancellationToken)
@@ -65,7 +67,21 @@ namespace Application.Facility.Commands
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            SmsRequest reqSms = new SmsRequest("18588850203");
+            //string[] saps = 
+            var createUser = await _identityService.GetUserById(request.uid);
+
+            /*
+            var facUsers = GetfirstPicsUsers(request.fix_location_id, request.fix_type_id);
+            foreach (var user in facUsers)
+            {
+                SmsRequest reqSms = new SmsRequest(user.phone, user.name, createUser.wc, createUser.LastName);
+                await _httpClient.GenericRequest<SmsRequest, SmsResponse>(ClientApi, string.Concat("https://30905186-20b1-4fe9-9a60-86846a85f7f6.bspapp.com/http/sendSms?", StringExtensions
+                  .ParseObjectToQueryString(reqSms, true)), cancellationToken, MethodType.Get);
+            }
+
+            */
+            //FOR TEST
+            SmsRequest reqSms = new SmsRequest("18588850203", "Jerry Liu", createUser.wc, createUser.LastName);
             await _httpClient.GenericRequest<SmsRequest, SmsResponse>(ClientApi, string.Concat("https://30905186-20b1-4fe9-9a60-86846a85f7f6.bspapp.com/http/sendSms?", StringExtensions
               .ParseObjectToQueryString(reqSms, true)), cancellationToken, MethodType.Get);
 
@@ -80,14 +96,39 @@ namespace Application.Facility.Commands
             var str = string.Join(",", array);
             return string.IsNullOrEmpty(str) ? "" : str;
         }
+
+        private List<FacilityUser> GetfirstPicsUsers(int fix_location_id, int fix_type_id)
+        {
+            string firstPicIds = GetfirstPics(fix_location_id, fix_type_id);
+            string[] sapIdAry = firstPicIds.Split(",");
+
+            List<FacilityUser> list = new List<FacilityUser>();
+
+            foreach (var charge in sapIdAry)
+            {
+                var facUser = _context.FacilityUsers.AsNoTracking().FirstOrDefault(x => x.sap_no == charge);
+                if (facUser != null)
+                {
+                    list.Add(facUser);
+                }
+            }
+
+            return list;
+        }
     }
 
     public class SmsRequest
     {
         public string phone { get; set; }
-        public SmsRequest(string phone)
+        public string pic { get; set; }
+        public string dep { get; set; }
+        public string createby { get; set; }
+        public SmsRequest(string phone, string pic, string dep, string createby)
         {
             this.phone = phone;
+            this.pic = pic;
+            this.dep = dep;
+            this.createby = createby;
         }
     }
 
