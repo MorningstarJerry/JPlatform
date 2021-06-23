@@ -66,10 +66,8 @@ namespace Application.Facility.Commands
             await _context.SaveChangesAsync(cancellationToken);
 
             SmsRequest reqSms = new SmsRequest("18588850203");
-            var task = _httpClient.GenericRequest<SmsRequest, SmsResponse>(ClientApi, string.Concat("https://30905186-20b1-4fe9-9a60-86846a85f7f6.bspapp.com/http/sendSms?", StringExtensions
+            await _httpClient.GenericRequest<SmsRequest, SmsResponse>(ClientApi, string.Concat("https://30905186-20b1-4fe9-9a60-86846a85f7f6.bspapp.com/http/sendSms?", StringExtensions
               .ParseObjectToQueryString(reqSms, true)), cancellationToken, MethodType.Get);
-
-            task.Start();
 
             return ServiceResult.Success(_mapper.Map<FacOrderDto>(entity));
         }
