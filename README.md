@@ -133,8 +133,11 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 #### use docker-compose to start elk on docker-desktop
 ![Docker](https://github.com/MorningstarJerry/CleanArchitecture/blob/main/ScreenShots/Docker.png)
 
-#### ElasticSearch
+#### ElasticSearch(http://8.135.118.30:9200/)
 ![ElasticSearch](https://github.com/MorningstarJerry/CleanArchitecture/blob/main/ScreenShots/ElasticSearch.png)
 
-#### Kiba
+![ElasticSearch](https://github.com/MorningstarJerry/JPlatform/blob/main/CleanArchitecture/ScreenShots/M11.png)
+
+#### Kiba(http://8.135.118.30:5601/app/kibana#/home?_g=())
 ![Kiba](https://github.com/MorningstarJerry/CleanArchitecture/blob/main/ScreenShots/Kiba.png)
+![Kiba](https://github.com/MorningstarJerry/JPlatform/blob/main/CleanArchitecture/ScreenShots/M12.png)
