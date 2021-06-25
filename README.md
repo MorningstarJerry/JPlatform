@@ -12,7 +12,8 @@ $ podman run -it  -p 8082:80  --name jwebapi  c115092f38eb
 
 http://8.135.118.30:8082/api/index.html?url=/api/specification.json#/
 ```
-
+## Docker Release
+![CleanArchitecture](https://github.com/MorningstarJerry/JPlatform/blob/main/CleanArchitecture/ScreenShots/M10.png)
 
 
 ## 后端编译后文件(硬启动 8888)
