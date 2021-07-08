@@ -29,10 +29,10 @@ namespace Application.Competency.Queries
         public async Task<ServiceResult<List<Competency_ProcessDto>>> Handle(GetAllCompetencyQuery request, CancellationToken cancellationToken)
         {
 
-            var task = await _context.Competency_Process
-                .Include(x => x.Categorys)
-                .ThenInclude(c => c.Critiras)
-                .ToListAsync(cancellationToken);
+            //var task = await _context.Competency_Process
+            //    .Include(x => x.Categorys)
+            //    .ThenInclude(c => c.Critiras)
+            //    .ToListAsync(cancellationToken);
 
             List<Competency_ProcessDto> list = await _context.Competency_Process
                 .Include(x => x.Categorys)
