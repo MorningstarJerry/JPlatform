@@ -6,6 +6,7 @@ using Domain.Entities;
 using Domain.Enums;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,7 +85,7 @@ namespace Application.Facility.Commands
             SmsRequest reqSms = new SmsRequest("18588850203", "Jerry Liu", createUser.wc, createUser.LastName);
             await _httpClient.GenericRequest<SmsRequest, SmsResponse>(ClientApi, string.Concat("https://30905186-20b1-4fe9-9a60-86846a85f7f6.bspapp.com/http/sendSms?", StringExtensions
               .ParseObjectToQueryString(reqSms, true)), cancellationToken, MethodType.Get);
-
+            Log.Information("a new facility doc created");
             return ServiceResult.Success(_mapper.Map<FacOrderDto>(entity));
         }
 

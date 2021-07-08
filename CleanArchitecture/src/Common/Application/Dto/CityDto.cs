@@ -1,10 +1,10 @@
-using System.Collections.Generic;
 using Domain.Entities;
 using Mapster;
+using System.Collections.Generic;
 
 namespace Application.Dto
 {
-    public class CityDto : IRegister 
+    public class CityDto : IRegister
     {
         public CityDto()
         {

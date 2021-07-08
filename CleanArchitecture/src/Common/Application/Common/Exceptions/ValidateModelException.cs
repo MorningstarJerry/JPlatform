@@ -1,13 +1,13 @@
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Application.Common.Exceptions
 {
-    public  class ValidateModelException : ModelStateDictionary
+    public class ValidateModelException : ModelStateDictionary
     {
 
-        public ValidateModelException() 
+        public ValidateModelException()
         {
             Errors = new Dictionary<string, List<string>>();
         }

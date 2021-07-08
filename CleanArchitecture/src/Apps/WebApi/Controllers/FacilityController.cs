@@ -14,7 +14,7 @@ namespace WebApi.Controllers
     public class FacilityController : BaseApiController
     {
         [HttpGet]
-        public async Task<ActionResult<ServiceResult<List<FacOrderDto>>>> GetAllFacOrders([FromQuery] GetFacOrderQuery query,CancellationToken cancellationToken)
+        public async Task<ActionResult<ServiceResult<List<FacOrderDto>>>> GetAllFacOrders([FromQuery] GetFacOrderQuery query, CancellationToken cancellationToken)
         {
             return Ok(await Mediator.Send(query, cancellationToken));
         }

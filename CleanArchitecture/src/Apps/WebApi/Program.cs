@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
+using System;
+using System.Threading.Tasks;
 
 namespace WebApi
 {
@@ -35,13 +35,15 @@ namespace WebApi
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
-                    await ApplicationDbContextSeed.SeedSamplesSectorsDataAsync(context);
-                    await ApplicationDbContextSeed.SeedSamplesSitesDataAsync(context);
-                    await ApplicationDbContextSeed.SeedSamplesWcsDataAsync(context);
-                    await ApplicationDbContextSeed.SeedSamplesDepartmentsDataAsync(context);
-                    await ApplicationDbContextSeed.SeedSamplesPermissionsDataAsync(context);
-                    await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager, roleManager, context);
-                    await ApplicationDbContextSeed.SeedSampleCityDataAsync(context);
+                    //await ApplicationDbContextSeed.SeedSamplesSectorsDataAsync(context);
+                    //await ApplicationDbContextSeed.SeedSamplesSitesDataAsync(context);
+                    //await ApplicationDbContextSeed.SeedSamplesWcsDataAsync(context);
+                    //await ApplicationDbContextSeed.SeedSamplesDepartmentsDataAsync(context);
+                    //await ApplicationDbContextSeed.SeedSamplesPermissionsDataAsync(context);
+                    //await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager, roleManager, context);
+                    //await ApplicationDbContextSeed.SeedSampleCityDataAsync(context);
+
+                    await ApplicationDbContextSeed.SeedCompetencyDataAsync(context);
                 }
                 catch (Exception ex)
                 {

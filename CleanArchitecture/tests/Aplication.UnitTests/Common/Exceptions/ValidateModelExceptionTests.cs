@@ -1,7 +1,7 @@
-using System;
 using Application.Common.Exceptions;
 using FluentAssertions;
 using NUnit.Framework;
+using System;
 
 namespace Application.UnitTests.Common.Exceptions
 {

@@ -1,9 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Domain.Entities;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
@@ -193,6 +195,92 @@ namespace Infrastructure.Persistence
 
                 await context.SaveChangesAsync();
             }
+        }
+
+        public static async Task SeedCompetencyDataAsync(ApplicationDbContext context)
+        {
+            // Seed, if necessary
+            if (!context.Competency_Process.Any())
+            {
+                var myJsonString = File.ReadAllText("competency/HeatStake.json");
+                var myJsonObject = JsonConvert.DeserializeObject<Competency.Competency>(myJsonString);
+
+                //NewMethod(myJsonObject);
+
+                //var myJObject = JObject.Parse(myJsonString);
+
+                context.Competency_Process.Add(new Competency_Process
+                {
+                    name = "Heat Stake",
+                    Categorys =
+                    {
+                        GetCategorys(myJsonObject,"CTQ/CTP"),
+                        GetCategorys(myJsonObject,"Data Traceability"),
+                        GetCategorys(myJsonObject,"Visualization"),
+                        GetCategorys(myJsonObject,"Smartness")
+                    },
+                    Dimensions =
+                    {
+                        GetSmeDetails(myJsonObject,"Attitude"),
+                        GetSmeDetails(myJsonObject,"Skill"),
+                        GetSmeDetails(myJsonObject,"Knowledge"),
+                    }
+                });
+
+                await context.SaveChangesAsync();
+            }
+        }
+
+        private static Competency_Category GetCategorys(Competency.Competency myJsonObject, string categoryKey)
+        {
+            Competency_Category competencyCategory1 = new Competency_Category();
+            competencyCategory1.name = categoryKey;
+            var category1 = myJsonObject.datas.Where(x => x.category == categoryKey).ToList();
+            foreach (var item in category1)
+            {
+                competencyCategory1.Critiras.Add(new Competency_Critira()
+                {
+                    name = item.critira,
+                    description = item.critira,
+                    gradea = item.gradea,
+                    gradea_url = item.gradea_url,
+                    gradeb = item.gradeb,
+                    gradeb_url = item.gradeb_url,
+                    gradec = item.gradec,
+                    gradec_url = item.gradec_url,
+                    graded = item.graded,
+                    graded_url = item.graded_url,
+                    current = string.IsNullOrEmpty(item.current) ? "N/A" : item.current,
+                    score = item.score
+                });
+            }
+
+            return competencyCategory1;
+        }
+
+        private static Competency_SmeDimension GetSmeDetails(Competency.Competency myJsonObject, string categoryKey)
+        {
+            Competency_SmeDimension competency_SmeDimension = new Competency_SmeDimension();
+            competency_SmeDimension.name = categoryKey;
+            competency_SmeDimension.code = categoryKey;
+            var category1 = myJsonObject.sme.Where(x => x.Dimension == categoryKey).ToList();
+            foreach (var item in category1)
+            {
+                competency_SmeDimension.smeDetails.Add(new Competency_SmeDetails()
+                {
+                    name = item.Competency,
+                    code = item.Code,
+                    definition = item.Dimension,
+                    gradea = item.Level0,
+                    gradeb = item.Level1,
+                    gradec = item.Level2,
+                    graded = item.Level3,
+                    weight = item.Weight,
+                    score = item.Score
+                });
+            }
+
+            return competency_SmeDimension;
         }
 
         public static async Task SeedSamplesSitesDataAsync(ApplicationDbContext context)

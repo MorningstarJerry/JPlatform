@@ -66,7 +66,7 @@ namespace Application.Common.Models
         public static ServiceError NotFount => new ServiceError("The specified resource was not found.", 990);
 
         public static ServiceError ValidationFormat => new ServiceError("Request object format is not true.", 901);
-        
+
         public static ServiceError Validation => new ServiceError("One or more validation errors occurred.", 900);
 
         public static ServiceError SearchAtLeastOneCharacter => new ServiceError("Search parameter must have at least one character!", 898);

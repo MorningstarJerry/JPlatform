@@ -1,12 +1,9 @@
-﻿using Mapster;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Domain.Entities;
 
 namespace Application.Dto.Facility
 {
-    public class FacOrderDto 
+    public class FacOrderDto
     {
         public Int64 id { get; set; }
         public string fix_no { get; set; }

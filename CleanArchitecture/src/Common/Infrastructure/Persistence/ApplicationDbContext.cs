@@ -1,7 +1,3 @@
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 using Application.Common.Interfaces;
 using Domain.Common;
 using Domain.Entities;
@@ -11,6 +7,10 @@ using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Options;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
@@ -45,6 +45,11 @@ namespace Infrastructure.Persistence
         public DbSet<FileStores> FileStores { get; set; }
         public DbSet<CompleteFileStores> CompleteFileStores { get; set; }
         public DbSet<ChargeMap> ChargeMaps { get; set; }
+
+        public DbSet<Competency_Process> Competency_Process { get; set; }
+        public DbSet<Competency_Category> Competency_Category { get; set; }
+        public DbSet<Competency_Critira> Competency_Critira { get; set; }
+
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

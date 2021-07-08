@@ -18,6 +18,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.1" />
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.8.0" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
   </ItemGroup>
 
@@ -29,8 +30,13 @@
     <Folder Include="ApplicationRole\Commands\" />
     <Folder Include="ApplicationUser\Commands\Create\" />
     <Folder Include="ApplicationUser\Commands\Delete\" />
+    <Folder Include="Competency\Commands\" />
     <Folder Include="Villages\Commands\" />
     <Folder Include="Workcells\Commands\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
 </Project>

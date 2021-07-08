@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using Domain.Common;
 using Domain.Event;
+using System.Collections.Generic;
 
 namespace Domain.Entities
 {
@@ -9,7 +9,7 @@ namespace Domain.Entities
         public City()
         {
             Districts = new List<District>();
-            DomainEvents= new List<DomainEvent>();
+            DomainEvents = new List<DomainEvent>();
         }
 
         public int Id { get; set; }

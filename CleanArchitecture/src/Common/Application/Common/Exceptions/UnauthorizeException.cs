@@ -6,7 +6,7 @@ namespace Application.Common.Exceptions
     {
         public UnauthorizeException() : base("User was not found!")
         {
-            
+
         }
     }
 }

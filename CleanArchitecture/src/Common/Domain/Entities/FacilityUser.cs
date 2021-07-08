@@ -1,11 +1,8 @@
-﻿using Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace Domain.Entities
 {
-   public class FacilityUser 
+    public class FacilityUser
     {
         public int id { get; set; }
         public int type { get; set; }

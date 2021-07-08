@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Common.Models;
@@ -8,6 +5,9 @@ using Application.Dto;
 using MapsterMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Identity
 {
@@ -101,7 +101,7 @@ namespace Infrastructure.Identity
         {
             ApplicationUser user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
-            if(user !=null)
+            if (user != null)
             {
                 return _mapper.Map<ApplicationUserDto>(user);
             }
@@ -112,7 +112,7 @@ namespace Infrastructure.Identity
         public async Task<IdentityResult> UpdateUserAvatarAsync(string userId, string gsm)
         {
             ApplicationUser user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
-            
+
             if (user != null)
             {
                 user.Gsm = gsm;

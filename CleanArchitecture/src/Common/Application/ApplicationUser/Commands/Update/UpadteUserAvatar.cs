@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Application.Common.Interfaces;
+﻿using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.Dto;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Application.ApplicationUser.Commands.Update
 {

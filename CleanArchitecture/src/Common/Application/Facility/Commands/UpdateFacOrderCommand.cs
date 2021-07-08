@@ -4,9 +4,7 @@ using Application.Common.Models;
 using Application.Dto.Facility;
 using Domain.Entities;
 using MapsterMapper;
-using MediatR;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 

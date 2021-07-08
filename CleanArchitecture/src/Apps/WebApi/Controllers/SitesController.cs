@@ -1,14 +1,12 @@
 ﻿using Application.Common.Models;
 using Application.Dto.Sites;
+using Application.Sites.Commands;
+using Application.Sites.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Sites.Queries;
-using Application.Sites.Commands;
 
 namespace WebApi.Controllers
 {

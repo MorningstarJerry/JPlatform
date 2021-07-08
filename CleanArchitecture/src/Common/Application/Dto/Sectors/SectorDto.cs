@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Application.Dto.Sectors
+﻿namespace Application.Dto.Sectors
 {
     public class SectorDto
     {

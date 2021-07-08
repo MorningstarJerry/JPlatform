@@ -1,17 +1,17 @@
+using Application.Common.Interfaces;
+using Application.Common.Models;
+using Domain.Enums;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Common.Interfaces;
-using Application.Common.Models;
-using Domain.Enums;
-using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Services.Handlers
 {
-    public class HttpClientHandler: IHttpClientHandler
+    public class HttpClientHandler : IHttpClientHandler
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger<HttpClientHandler> _logger;
@@ -22,15 +22,15 @@ namespace Infrastructure.Services.Handlers
             _logger = logger;
         }
 
-        public async Task<ServiceResult<TResult>> GenericRequest<TRequest, TResult>(string clientApi, string url, CancellationToken cancellationToken, 
-            MethodType method = MethodType.Get, 
+        public async Task<ServiceResult<TResult>> GenericRequest<TRequest, TResult>(string clientApi, string url, CancellationToken cancellationToken,
+            MethodType method = MethodType.Get,
             TRequest requestEntity = null)
             where TResult : class where TRequest : class
         {
             var httpClient = _httpClientFactory.CreateClient(clientApi);
 
             var requestName = typeof(TRequest).Name;
-            
+
             try
             {
                 _logger.LogInformation("HttpClient Request: {RequestName} {@Request}", requestName, requestEntity);
@@ -54,7 +54,7 @@ namespace Infrastructure.Services.Handlers
 
                 var message = await response.Content.ReadAsStringAsync(cancellationToken);
 
-                var error = new ServiceError(message, (int) response.StatusCode);
+                var error = new ServiceError(message, (int)response.StatusCode);
 
                 return ServiceResult.Failed<TResult>(error);
             }

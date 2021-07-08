@@ -1,7 +1,7 @@
-using System.Threading.Tasks;
 using Application.WeatherForecasts.Queries.GetCurrentWeatherForecastQuery;
 using FluentAssertions;
 using NUnit.Framework;
+using System.Threading.Tasks;
 using static Application.IntegrationTests.Testing;
 
 namespace Application.IntegrationTests.WeatherForecast.Queries

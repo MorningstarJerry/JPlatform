@@ -1,7 +1,4 @@
 ﻿using Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.Entities
 {
@@ -10,7 +7,7 @@ namespace Domain.Entities
         public Workcell(string Name) : base(Name)
         {
         }
-        
+
         public string Pic { get; set; }
         public string Location { get; set; }
         public string SiteId { get; set; }

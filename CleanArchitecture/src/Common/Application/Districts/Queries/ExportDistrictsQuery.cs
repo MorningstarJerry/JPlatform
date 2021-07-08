@@ -1,6 +1,3 @@
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Application.Common.Interfaces;
 using Application.Common.Security;
 using Application.Dto;
@@ -8,6 +5,9 @@ using Mapster;
 using MapsterMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Application.Districts.Queries
 {

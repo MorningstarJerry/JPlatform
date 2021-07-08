@@ -1,4 +1,3 @@
-using System.Linq;
 using Application;
 using Application.Common.Interfaces;
 using FluentValidation.AspNetCore;
@@ -12,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NSwag;
 using NSwag.Generation.Processors.Security;
+using System.Linq;
 using WebApi.Filters;
 using WebApi.Services;
 
@@ -36,7 +36,7 @@ namespace WebApi
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
             services.AddHttpContextAccessor();
-            
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddHealthChecks()
@@ -66,7 +66,7 @@ namespace WebApi
                 configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
             });
 
-            string[] allowUrls = {"https://*","http://*" };
+            string[] allowUrls = { "https://*", "http://*" };
             services.AddCors(options =>
             {
                 options.AddPolicy("CORS", policy =>

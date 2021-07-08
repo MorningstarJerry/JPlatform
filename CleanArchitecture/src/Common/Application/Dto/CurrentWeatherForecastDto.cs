@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using Mapster;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Application.Dto
 {
@@ -36,17 +36,17 @@ namespace Application.Dto
 
     public class Rain
     {
-        [JsonProperty(PropertyName = "1h")] 
+        [JsonProperty(PropertyName = "1h")]
         public double _1h { get; set; }
-        [JsonProperty(PropertyName = "3h")] 
+        [JsonProperty(PropertyName = "3h")]
         public double _3h { get; set; }
     }
 
     public class Snow
     {
-        [JsonProperty(PropertyName = "1h")] 
+        [JsonProperty(PropertyName = "1h")]
         public double _1h { get; set; }
-        [JsonProperty(PropertyName = "3h")] 
+        [JsonProperty(PropertyName = "3h")]
         public double _3h { get; set; }
     }
 

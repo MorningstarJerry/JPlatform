@@ -1,7 +1,7 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Application.Common.Models;
 using Domain.Enums;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Application.Common.Interfaces
 {

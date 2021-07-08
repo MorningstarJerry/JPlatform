@@ -1,8 +1,5 @@
 ﻿using Domain.Entities;
 using Mapster;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Dto.Facility
 {

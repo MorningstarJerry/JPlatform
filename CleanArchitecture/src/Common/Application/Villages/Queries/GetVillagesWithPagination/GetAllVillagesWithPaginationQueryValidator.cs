@@ -6,7 +6,7 @@ namespace Application.Villages.Queries.GetVillagesWithPagination
     {
         public GetAllVillagesWithPaginationQueryValidator()
         {
-            RuleFor(x=>x.DistrictId)
+            RuleFor(x => x.DistrictId)
                 .NotNull()
                 .NotEmpty().WithMessage("DistrictId is required.");
 

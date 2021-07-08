@@ -1,6 +1,6 @@
-using System.Linq;
 using Application.Common.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Linq;
 
 namespace Infrastructure.Identity
 {

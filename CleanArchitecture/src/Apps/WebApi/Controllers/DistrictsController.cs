@@ -1,15 +1,15 @@
-using System.Threading.Tasks;
 using Application.Common.Models;
 using Application.Districts.Commands.Create;
 using Application.Districts.Queries;
 using Application.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
     [Authorize]
-    public class DistrictsController: BaseApiController
+    public class DistrictsController : BaseApiController
     {
         [HttpGet("{id}")]
         public async Task<FileResult> Get(int id)

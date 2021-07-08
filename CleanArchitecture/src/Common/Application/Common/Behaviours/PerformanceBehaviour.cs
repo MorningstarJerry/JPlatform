@@ -1,9 +1,9 @@
-using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 using Application.Common.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Application.Common.Behaviours
 {

@@ -4,9 +4,7 @@ using Application.Common.Models;
 using Application.Dto.Facility;
 using Domain.Entities;
 using MapsterMapper;
-using MediatR;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,7 +15,7 @@ namespace Application.Facility.Commands
     {
         public long Id { get; set; }
         public string Rate { get; set; }
-       
+
     }
 
     public class EvaluationFacOrderHandler : IRequestHandlerWrapper<EvaluationFacOrderCommand, FacOrderDto>

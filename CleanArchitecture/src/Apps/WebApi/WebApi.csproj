@@ -41,6 +41,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="competency\HeatStake.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="cert\IS4.pfx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
